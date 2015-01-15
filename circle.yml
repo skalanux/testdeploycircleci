@@ -16,5 +16,8 @@ deployment:
   hub:
     branch: master
     commands:
+      - echo "DOCKER_EMAIL: " $DOCKER_EMAIL
+      - echo "DOCKER_USER: " $DOCKER_USER
+      - echo "DOCKER_PA: " $DOCKER_PASS
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
       - docker push deveska/qwil-deploy
