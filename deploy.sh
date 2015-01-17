@@ -19,5 +19,5 @@ aws elasticbeanstalk create-application-version --application-name hello \
   --version-label $SHA1 --source-bundle S3Bucket=$EB_BUCKET,S3Key=$DOCKERRUN_FILE
 
 # Update Elastic Beanstalk environment to new version
-aws elasticbeanstalk update-environment --environment-name default-environment-mjgpgcfv8z.elasticbeanstalk.com \
+aws elasticbeanstalk update-environment --environment-name hello-env2 \
     --version-label $SHA1
