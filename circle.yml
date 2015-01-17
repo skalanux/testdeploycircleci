@@ -1,23 +1,24 @@
 machine:
+  python:
+    version: 2.7.3
   services:
     - docker
 
 dependencies:
   override:
+    - pip install awscli
     - docker info
-    - docker build -t deveska/qwil-deploy .
+    - docker build -t deveska/qwil-deploy:$CIRCLE_SHA1 .
 
 test:
   override:
-    - docker run -d -p 80:80 deveska/qwil-deploy; sleep 10
+      - docker run -d -p 80:80 deveska/qwil-deploy:$CIRCLE_SHA1; sleep 10
     - curl --retry 10 --retry-delay 5 -v http://localhost:80
 
 deployment:
   hub:
     branch: master
     commands:
-      - echo "DOCKER_EMAIL " $DOCKER_EMAIL
-      - echo "DOCKER_USER " $DOCKER_USER
-      - echo "DOCKER_PA " $DOCKER_PASS
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS 
-      - docker push deveska/qwil-deploy
+      - ./deploy.sh $CIRCLE_SHA1
+      - docker push deveska/qwil-deploy:$CIRCLE_SHA1
