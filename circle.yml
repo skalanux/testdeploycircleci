@@ -3,7 +3,6 @@ machine:
     version: 2.7.3
   services:
     - docker
-    - ssh
 
 dependencies:
   override:
