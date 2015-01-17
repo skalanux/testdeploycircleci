@@ -1,0 +1,16 @@
+{
+    "AWSEBDockerrunVersion": "1",
+        "Authentication": {
+            "Bucket": "hello-bucket",
+            "Key": "dockercfg"
+        },
+        "Image": {
+            "Name": "deveska/qwil-deploy:<TAG>",
+            "Update": "true"
+        },
+        "Ports": [
+        {
+            "ContainerPort": "80"
+        }
+    ]
+}]}
