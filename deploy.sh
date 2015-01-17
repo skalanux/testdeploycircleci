@@ -7,7 +7,7 @@ SHA1=$1
 docker push deveska/qwil-deploy:$HA1
 
 # Create new Elastic Beanstalk version
-EB_BUCKET=hello-bucket
+EB_BUCKET=hello-bucket-ska
 DOCKERRUN_FILE=$SHA1-Dockerrun.aws.json
 sed "s/<TAG>/$SHA1/" < Dockerrun.aws.json.template > $DOCKERRUN_FILE
 aws s3 cp $DOCKERRUN_FILE s3://$EB_BUCKET/$DOCKERRUN_FILE
